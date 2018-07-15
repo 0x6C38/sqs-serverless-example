@@ -6,6 +6,12 @@ provider:
   environment:
     QUEUE_URL:
       Ref: SQSQueue
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "sqs:sendMessage"
+      Resource:
+        Fn::GetAtt: [SQSQueue, Arn]
 
 functions:
   pushToQueue:

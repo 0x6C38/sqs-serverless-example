@@ -26,7 +26,7 @@ functions:
       - sqs:
           arn:
             Fn::GetAtt: [SQSQueue, Arn]
-          #batchSize: 10
+          batchSize: 1
   
 
 resources:

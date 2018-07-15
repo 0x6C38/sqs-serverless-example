@@ -4,7 +4,8 @@ provider:
   name: aws
   runtime: nodejs8.10
   environment:
-    QUEUE_URL: "hello there"
+    QUEUE_URL:
+      Ref: SQSQueue
 
 functions:
   pushToQueue:

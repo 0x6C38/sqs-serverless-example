@@ -22,13 +22,19 @@ functions:
       - http:
           path: pushToQueue
           method: post
+  pushBatchToQueue:
+    handler: handler.pushBatchToQueue
+    events:
+      - http:
+          path: pushBatchToQueue
+          method: post
   queueProcessMessage:
     handler: handler.processQueueMessages
     events:
       - sqs:
           arn:
             Fn::GetAtt: [SQSQueue, Arn]
-          batchSize: 1
+          batchSize: 10
   
 
 resources:

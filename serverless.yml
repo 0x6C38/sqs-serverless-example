@@ -20,6 +20,12 @@ functions:
       - http:
           path: pushToQueue
           method: post
+  queueProcessMessage:
+    handler: handler.processQueueMessages
+    events:
+      - sqs:
+          arn:
+            Fn::GetAtt: [SQSQueue, Arn]
   
 
 resources:

@@ -1,11 +1,11 @@
 'use strict';
 
+const AWS = require("aws-sdk");
 const QUEUE_URL = process.env.QUEUE_URL;
 
 module.exports.pushToQueue = (event, context, callback) => {
   const body = (event.body === undefined ? 'No-message' : event.body);
 
-  const AWS = require("aws-sdk");
   const sqs = new AWS.SQS();
 
   const params = {
@@ -29,3 +29,12 @@ module.exports.pushToQueue = (event, context, callback) => {
   callback(null, response);
   
 };
+
+
+module.exports.processQueueMessages = (event, context, callback) => {
+
+  console.log(event.Records[0].body);
+  callback(null);
+  
+};
+

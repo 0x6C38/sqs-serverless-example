@@ -1,5 +1,7 @@
 service: sqs-example
 
+frameworkVersion: ">=1.28.0"
+
 provider:
   name: aws
   runtime: nodejs8.10

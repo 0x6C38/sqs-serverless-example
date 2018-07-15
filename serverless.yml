@@ -3,10 +3,16 @@ service: sqs-example
 provider:
   name: aws
   runtime: nodejs8.10
+  environment:
+    QUEUE_URL: "hello there"
 
 functions:
-  hello:
-    handler: handler.hello
+  pushToQueue:
+    handler: handler.pushToQueue
+    events:
+      - http:
+          path: pushToQueue
+          method: post
 
 resources:
   Resources:
@@ -14,3 +20,4 @@ resources:
       Type: AWS::SQS::Queue
       Properties:
         MessageRetentionPeriod: 86400
+
